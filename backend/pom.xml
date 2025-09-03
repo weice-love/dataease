@@ -12,15 +12,51 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <shiro.version>1.9.1</shiro.version>
+        <shiro.version>1.8.0</shiro.version>
         <java.version>1.8</java.version>
         <graalvm.version>20.1.0</graalvm.version>
         <jwt.version>3.12.1</jwt.version>
         <buji.version>4.0.0</buji.version>
         <pac4j.version>3.3.0</pac4j.version>
+        <swagger.version>1.6.2</swagger.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
@@ -100,15 +136,22 @@
             <artifactId>pagehelper</artifactId>
             <version>5.3.1</version>
         </dependency>
+
         <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>${shiro.version}</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-vfs2</artifactId>
+            <version>2.2</version> <!-- 版本号可根据需要调整，2.9.0是当前较新的稳定版 -->
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -200,6 +243,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.safehaus.jug/jug -->
+        <dependency>
+            <groupId>org.safehaus.jug</groupId>
+            <artifactId>jug</artifactId>
+            <version>2.0.0</version>
+        </dependency>
         <dependency>
             <groupId>io.dataease</groupId>
             <artifactId>dataease-plugin-interface</artifactId>
@@ -221,11 +270,21 @@
             <artifactId>dataease-plugin-datasource</artifactId>
             <version>1.17.0</version>
         </dependency>
-        <!-- kettle及数据源依赖 -->
+<!--        &lt;!&ndash; kettle及数据源依赖 &ndash;&gt;-->
+        <dependency>
+            <groupId>pentaho</groupId>
+            <artifactId>pentaho-platform-api</artifactId>
+            <version>8.3.0.0-371</version> <!-- 版本号可根据实际需求调整，与其他Pentaho组件版本保持一致 -->
+        </dependency>
+        <dependency>
+            <groupId>org.pentaho</groupId>
+            <artifactId>commons-xul-core</artifactId>
+            <version>8.3.0.0-371</version>
+        </dependency>
         <dependency>
             <groupId>pentaho-kettle</groupId>
             <artifactId>kettle-core</artifactId>
-            <version>8.3.0.18-1112</version>
+            <version>8.3.0.0-371</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -244,7 +303,7 @@
         <dependency>
             <groupId>pentaho-kettle</groupId>
             <artifactId>kettle-engine</artifactId>
-            <version>8.3.0.18-1112</version>
+            <version>8.3.0.0-371</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -267,7 +326,7 @@
         <dependency>
             <groupId>pentaho</groupId>
             <artifactId>metastore</artifactId>
-            <version>8.3.0.18-1112</version>
+            <version>8.3.0.0-371</version>
             <exclusions>
                 <exclusion>
                     <artifactId>guava</artifactId>
@@ -282,7 +341,7 @@
         <dependency>
             <groupId>org.pentaho.di.plugins</groupId>
             <artifactId>pdi-engine-configuration-impl</artifactId>
-            <version>8.3.0.7-683</version>
+            <version>8.3.0.0-371</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -334,8 +393,13 @@
             <artifactId>ashot</artifactId>
             <version>1.5.4</version>
         </dependency>
-
-
+        <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>3.0.17</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -523,13 +587,12 @@
     </profiles>
 
     <repositories>
+
         <repository>
-            <id>pentaho-public</id>
-            <name>Pentaho Public</name>
-            <url>https://nexus.pentaho.org/content/groups/omni</url>
+            <id>aliyun</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
             </releases>
             <snapshots>
                 <enabled>true</enabled>
@@ -537,5 +600,6 @@
             </snapshots>
         </repository>
     </repositories>
+
 
 </project>
