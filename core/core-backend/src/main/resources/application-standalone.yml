@@ -23,4 +23,83 @@ data:
   mock:
     enabled: true
 
-
+#租户配置
+tenant:
+  enabled: true
+  tenant_id: 1810181484728815616
+  #租户字段名
+  tenantIdColumn: create_by
+  #需要过滤租户的表名
+  tableFilter:
+    #原有的表
+    - area
+    - core_api_traffic
+    - core_area_custom
+    - core_copilot_config
+    - core_copilot_msg
+    - core_copilot_token
+    - core_custom_geo_area
+    - core_custom_geo_sub_area
+    - core_dataset_table
+    - core_dataset_table_field
+    - core_dataset_table_sql_log
+    - core_datasource_task
+    - core_datasource_task_log
+    - core_driver
+    - core_driver_jar
+    - core_ds_finish_page
+    - core_export_download_task
+    - core_export_task
+    - core_font
+    - core_menu
+    - core_menu_copy1
+    - core_opt_recent
+    - core_rsa
+    - core_share_ticket
+    - core_store
+    - core_sys_setting
+    - core_sys_startup_job
+    - de_standalone_version
+    - de_template_version
+    - demo_tea_material
+    - demo_tea_order
+    - license
+    - qrtz_blob_triggers
+    - qrtz_calendars
+    - qrtz_cron_triggers
+    - qrtz_fired_triggers
+    - qrtz_job_details
+    - qrtz_locks
+    - qrtz_paused_trigger_grps
+    - qrtz_scheduler_state
+    - qrtz_simple_triggers
+    - qrtz_simprop_triggers
+    - qrtz_triggers
+    - snapshot_visualization_link_jump
+    - snapshot_visualization_link_jump_info
+    - snapshot_visualization_link_jump_target_view_info
+    - snapshot_visualization_linkage
+    - snapshot_visualization_linkage_field
+    - snapshot_visualization_outer_params
+    - snapshot_visualization_outer_params_info
+    - snapshot_visualization_outer_params_target_view_info
+    - visualization_background
+    - visualization_background_image
+    - visualization_link_jump
+    - visualization_link_jump_info
+    - visualization_link_jump_target_view_info
+    - visualization_linkage
+    - visualization_linkage_field
+    - visualization_outer_params
+    - visualization_outer_params_info
+    - visualization_outer_params_target_view_info
+    - visualization_report_filter
+    - visualization_template_category_map
+    - visualization_template_extend_data
+    - xpack_platform_token
+    - xpack_plugin
+    - xpack_setting_authentication
+    - xpack_share
+    - xpack_threshold_info
+    - xpack_threshold_instance
+    - xpack_webhook
